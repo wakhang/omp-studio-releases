@@ -216,10 +216,24 @@ OMP Studio는 무료입니다. 모델 사용 비용은 **내가 로그인한 모
 문제가 있으면 안전 모드로 시작한 뒤 해당 플러그인만 끄면 됩니다.
 
 **Oh My Pi 공식 프로젝트인가요?**
-아닙니다. OMP Studio는 Oh My Pi와 무관한 독립 프로젝트입니다.
+아닙니다. OMP Studio는 omp(Oh My Pi)를 사용하는 **비공식 GUI**이며, omp 개발사(Stencil Labs)와 관련이 없습니다.
 
 ---
 
 ## 이용 조건
 
 [`LICENSE.md`](LICENSE.md)를 보세요. 요약: 개인·업무용으로 무료로 쓸 수 있고, 재배포·수정·판매는 할 수 없습니다.
+
+## 오픈소스 고지
+
+OMP Studio는 별도로 설치되는 [Oh My Pi (omp)](https://github.com/can1357/oh-my-pi)를 실행해 동작합니다. omp는 MIT 라이선스로 배포됩니다.
+
+```text
+MIT License
+
+Copyright (c) 2025 Mario Zechner
+Copyright (c) 2025-2026 Can Bölük
+Copyright (c) 2026 Stencil Labs, Inc.
+```
+
+전문: https://github.com/can1357/oh-my-pi/blob/main/LICENSE
