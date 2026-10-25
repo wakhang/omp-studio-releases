@@ -4,7 +4,7 @@
 코딩과 게임 개발(Unity)을 주 용도로 만들었고, 여러 에이전트를 탭·워크플로우로 함께 돌릴 수 있습니다.
 모델 연결·도구·서브에이전트·세션 같은 에이전트 기능은 omp가 맡고, OMP Studio는 그 위에 화면과 편의 기능을 얹습니다.
 
-이 저장소는 **설치 파일 배포용**입니다. 소스 코드는 공개하지 않습니다.
+이 저장소는 **설치 파일 배포용**입니다(Windows · macOS). 소스 코드는 공개하지 않습니다.
 → [최신 버전 받기](../../releases/latest)
 
 ![세션 화면: 에이전트가 원인을 찾고 코드를 고친 과정이 도구 카드로 보입니다](images/01-session-tool-cards.png)
@@ -92,7 +92,7 @@ OMP Studio의 화면은 플러그인과 같은 등록 구조로 만들어져 있
 | 워크플로우·에이전트 | 템플릿으로 생성, 부분 수정, 검증, 모의 실행, 실행 |
 | omp 설정·지침·MCP 서버 | `config.yml`, `AGENTS.md` 등, MCP 추가·연결 테스트·OAuth |
 | 화면·세션 | 화면·패널 열기, 다른 탭에 일 시키고 결과 받기, 저장된 세션 이어 열기·분기 |
-| 내장 브라우저, Windows 컴퓨터 제어 | 사이트별 승인 / 설정에서 직접 켠 경우에만 |
+| 내장 브라우저, 컴퓨터 제어(Windows) | 사이트별 승인 / 설정에서 직접 켠 경우에만 |
 
 ![AI 변경 승인 창](images/05-ai-approval.png)
 *AI가 앱 설정을 바꾸려 하면 바뀔 내용(JSON)을 보여 주고 승인을 받습니다. 승인 창은 앱 테마·사용자 CSS가 닿지 않는 별도 창으로 뜹니다.*
@@ -142,7 +142,7 @@ OMP Studio의 화면은 플러그인과 같은 등록 구조로 만들어져 있
 | | |
 |---|---|
 | 오른쪽 패널 | 할 일(진행률) · 기록(트리·체크포인트) · 코드(파일·검색·Git·변경 사항) · 브라우저로 묶인 탭 |
-| 터미널 | PowerShell·cmd·Git Bash·WSL, 여러 탭, 선택 영역을 AI에게 보내기 |
+| 터미널 | Windows: PowerShell·cmd·Git Bash·WSL / macOS: 로그인 셸(zsh 등), 여러 탭, 선택 영역을 AI에게 보내기 |
 | 파일 | 파일 탐색기, Monaco 편집기, 빠른 열기(`Ctrl+P`), 파일 내용 검색(`Ctrl+Shift+F`), AI 수정 diff 보기 |
 | Git | Git 패널(스테이지·커밋 등)과 Git 그래프(브랜치·원격·태그·스태시, 커밋 상세) |
 | 브라우저 | 내장 브라우저. AI가 쓸 때는 로그인 정보가 없는 별도 탭에서, 사이트마다 승인을 받고 동작 |
@@ -166,36 +166,71 @@ PC는 바깥으로 나가는 릴레이 연결만 쓰고, 내용은 **종단간 �
 
 ### 알림
 
-작업이 끝나거나 승인이 필요할 때 Windows 알림, 작업 표시줄 배지, 트레이 아이콘으로 알려 줍니다(설정 → 알림에서 조정).
+작업이 끝나거나 승인이 필요할 때 시스템 알림으로 알려 줍니다. Windows에서는 작업 표시줄 배지와 트레이 아이콘도 씁니다(설정 → 알림에서 조정).
 
 ---
 
 ## 설치
+
+### Windows
 
 1. [Releases](../../releases/latest)에서 `OMP-Studio-Setup-<버전>.exe`를 받습니다.
 2. 실행해서 설치합니다(사용자별 설치, 설치 경로 선택 가능).
    코드 서명이 없어 SmartScreen 경고가 뜨면 **추가 정보 → 실행**을 누르세요.
 3. 처음 실행하면 안내 화면이 순서대로 도와줍니다: **omp 설치 → 모델 계정 로그인 → 모델 선택 → 환경 확인 → 기본 설정 → 작업 폴더**.
    omp가 없으면 앱이 내려받아 설치합니다(해시 확인, PATH·환경 변수는 건드리지 않음).
+4. 새 버전은 앱이 자동으로 받아 업데이트합니다.
 
-각 릴리스 설명에 설치 파일의 SHA256이 있습니다. PowerShell에서 확인:
+### macOS (서명 없음)
+
+1. [Releases](../../releases/latest)에서 내 Mac에 맞는 파일을 받습니다.
+   - Apple Silicon(M1 이후): `OMP-Studio-<버전>-mac-arm64.dmg`
+   - Intel: `OMP-Studio-<버전>-mac-x64.dmg`
+2. dmg를 열고 **OMP Studio**를 `응용 프로그램` 폴더로 끌어 놓습니다.
+3. Apple 서명이 없는 앱이라 처음 한 번은 허용이 필요합니다. 앱을 **우클릭 → 열기**를 누르거나, 터미널에서 다음을 실행하세요.
+
+   ```sh
+   xattr -cr "/Applications/OMP Studio.app"
+   ```
+
+4. omp를 먼저 설치합니다. macOS에서는 앱이 omp를 대신 설치하지 않습니다([omp 설치 안내](https://github.com/can1357/oh-my-pi#install)).
+
+   ```sh
+   curl -fsSL https://omp.sh/install | sh
+   # 또는: brew install can1357/tap/omp
+   ```
+
+   앱은 PATH와 `~/.local/bin`, `/opt/homebrew/bin`, `/usr/local/bin`, `~/.bun/bin`에서 omp를 찾습니다.
+5. 자동 업데이트는 없습니다. 새 버전이 나오면 앱에 "새 버전" 배너가 뜨고, 누르면 릴리스 페이지로 갑니다.
+
+macOS에서 아직 안 되는 것: Studio의 컴퓨터 제어 도구(`studio_computer`)는 Windows 전용입니다. macOS에서는 omp의 `/computer`를 쓰세요.
+
+### 파일 확인 (SHA256)
+
+릴리스 페이지의 각 파일 옆에 SHA256이 표시됩니다. 받은 파일과 비교하려면:
 
 ```powershell
-Get-FileHash .\OMP-Studio-Setup-<버전>.exe -Algorithm SHA256
+Get-FileHash .\OMP-Studio-Setup-<버전>.exe -Algorithm SHA256   # Windows (PowerShell)
+```
+
+```sh
+shasum -a 256 OMP-Studio-<버전>-mac-arm64.dmg                  # macOS
 ```
 
 ### 요구 사항
 
 | | |
 |---|---|
-| OS | Windows 10 / 11 |
-| omp CLI | 필요. 없으면 첫 실행 안내에서 설치합니다 |
+| OS | Windows 10 / 11, macOS(Apple Silicon 또는 Intel) |
+| omp CLI | 필요. Windows는 첫 실행 안내에서 설치하고, macOS는 직접 설치합니다 |
 | 모델 계정 | omp가 지원하는 모델 제공자의 계정(로그인) 또는 API 키 |
 | 선택 | Git(Git 패널·그래프), Unity 등 작업에 쓰는 도구 |
 
 ### 제거
 
-Windows 설정 → 앱 → OMP Studio → 제거. 설정과 데이터(`%APPDATA%\omp-studio`)는 남으니 필요하면 직접 지우세요.
+- **Windows**: 설정 → 앱 → OMP Studio → 제거. 설정과 데이터(`%APPDATA%\omp-studio`)는 남으니 필요하면 직접 지우세요.
+- **macOS**: `응용 프로그램`에서 OMP Studio를 휴지통으로 옮깁니다. 설정과 데이터(`~/Library/Application Support/omp-studio`)는 남습니다.
+
 omp와 omp의 설정(`~/.omp`)은 OMP Studio와 별개라 함께 지워지지 않습니다.
 
 ---
@@ -203,7 +238,7 @@ omp와 omp의 설정(`~/.omp`)은 OMP Studio와 별개라 함께 지워지지 �
 ## 자주 묻는 질문
 
 **데이터는 어디에 저장되나요?**
-내 PC에 저장됩니다. 앱 설정·플러그인·AI 변경 기록과 백업은 `%APPDATA%\omp-studio`, 세션 기록과 모델 계정 정보는 omp 쪽(`~/.omp`)에 있습니다.
+내 PC에 저장됩니다. 앱 설정·플러그인·AI 변경 기록과 백업은 `%APPDATA%\omp-studio`(macOS: `~/Library/Application Support/omp-studio`), 세션 기록과 모델 계정 정보는 omp 쪽(`~/.omp`)에 있습니다.
 휴대폰 원격은 릴레이를 거치지만 종단간 암호화되어 릴레이는 내용을 볼 수 없습니다.
 
 **비용이 드나요?**
