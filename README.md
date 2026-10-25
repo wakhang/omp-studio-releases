@@ -92,7 +92,7 @@ OMP Studio의 화면은 플러그인과 같은 등록 구조로 만들어져 있
 | 워크플로우·에이전트 | 템플릿으로 생성, 부분 수정, 검증, 모의 실행, 실행 |
 | omp 설정·지침·MCP 서버 | `config.yml`, `AGENTS.md` 등, MCP 추가·연결 테스트·OAuth |
 | 화면·세션 | 화면·패널 열기, 다른 탭에 일 시키고 결과 받기, 저장된 세션 이어 열기·분기 |
-| 내장 브라우저, 컴퓨터 제어(Windows) | 사이트별 승인 / 설정에서 직접 켠 경우에만 |
+| 내장 브라우저, 컴퓨터 제어 | 사이트별 승인 / 설정에서 직접 켠 경우에만 |
 
 ![AI 변경 승인 창](images/05-ai-approval.png)
 *AI가 앱 설정을 바꾸려 하면 바뀔 내용(JSON)을 보여 주고 승인을 받습니다. 승인 창은 앱 테마·사용자 CSS가 닿지 않는 별도 창으로 뜹니다.*
@@ -193,7 +193,7 @@ PC는 바깥으로 나가는 릴레이 연결만 쓰고, 내용은 **종단간 �
    xattr -cr "/Applications/OMP Studio.app"
    ```
 
-4. omp를 먼저 설치합니다. macOS에서는 앱이 omp를 대신 설치하지 않습니다([omp 설치 안내](https://github.com/can1357/oh-my-pi#install)).
+4. omp는 처음 실행할 때 앱이 자동으로 설치합니다(해시 확인). 직접 설치하고 싶다면 [omp 설치 안내](https://github.com/can1357/oh-my-pi#install)를 따르세요(선택).
 
    ```sh
    curl -fsSL https://omp.sh/install | sh
@@ -201,9 +201,9 @@ PC는 바깥으로 나가는 릴레이 연결만 쓰고, 내용은 **종단간 �
    ```
 
    앱은 PATH와 `~/.local/bin`, `/opt/homebrew/bin`, `/usr/local/bin`, `~/.bun/bin`에서 omp를 찾습니다.
-5. 자동 업데이트는 없습니다. 새 버전이 나오면 앱에 "새 버전" 배너가 뜨고, 누르면 릴리스 페이지로 갑니다.
+5. 자동 업데이트는 0.5.6부터 됩니다. 새 버전이 나오면 앱이 zip을 내려받고, 다시 시작할 때 스스로 교체합니다. 앱이 `응용 프로그램` 폴더에 있어야 합니다. (0.5.5 이하는 한 번 직접 받아서 설치하세요.)
 
-macOS에서 아직 안 되는 것: Studio의 컴퓨터 제어 도구(`studio_computer`)는 Windows 전용입니다. macOS에서는 omp의 `/computer`를 쓰세요.
+컴퓨터 제어(`studio_computer`)도 macOS에서 동작합니다. 처음 쓸 때 시스템 설정에서 **손쉬운 사용**과 **화면 기록** 권한(필요하면 System Events 자동화 권한)을 허용해야 합니다.
 
 ### 파일 확인 (SHA256)
 
@@ -222,7 +222,7 @@ shasum -a 256 OMP-Studio-<버전>-mac-arm64.dmg                  # macOS
 | | |
 |---|---|
 | OS | Windows 10 / 11, macOS(Apple Silicon 또는 Intel) |
-| omp CLI | 필요. Windows는 첫 실행 안내에서 설치하고, macOS는 직접 설치합니다 |
+| omp CLI | 필요. Windows와 macOS 모두 첫 실행 때 앱이 설치합니다 |
 | 모델 계정 | omp가 지원하는 모델 제공자의 계정(로그인) 또는 API 키 |
 | 선택 | Git(Git 패널·그래프), Unity 등 작업에 쓰는 도구 |
 
